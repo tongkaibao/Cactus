@@ -9,7 +9,7 @@ import { collectionDateSort } from "@/utils/date";
 export const prerender = true;
 
 // Posts
-const MAX_POSTS = 10;
+const MAX_POSTS = 20;
 const allPosts = await getAllPosts();
 const allPostsByDate = allPosts
 	.sort(collectionDateSort)
