@@ -1,14 +1,10 @@
 import { type CollectionEntry, getCollection } from "astro:content";
 
 /** filter out draft posts based on the environment */
-export function sortMDByDate(posts: Array<CollectionEntry<"post">>) {
-	return posts.sort((a, b) => {
-		const aDate = new Date(a.data.updatedDate ?? a.data.publishDate).getTime();
-		const bDate = new Date(b.data.updatedDate ?? b.data.publishDate).getTime();
-		// 返回 b - a 表示从大到小（最新的在前）
-		// 如果你想从旧到新，就改为 aDate - bDate
-		return bDate - aDate;
-	});
+export async function getAllPosts(): Promise<CollectionEntry<"post">[]> {
+    return await getCollection("post", ({ data }) => {
+        return import.meta.env.PROD ? !data.draft : true;
+    });
 }
 
 /** groups posts by year (based on option siteConfig.sortPostsByUpdatedDate), using the year as the key
