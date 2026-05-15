@@ -32,7 +32,7 @@ export const menuLinks: { path: string; title: string }[] = [
 	},
 	{
 		path: "/posts/",
-		title: "博客",
+		title: "公告",
 	},
 	{
 		path: "/notes/",
